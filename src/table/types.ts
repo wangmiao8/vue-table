@@ -1,3 +1,11 @@
+/*
+ * @Author: imu
+ * @Date: 2021-10-21 00:20:26
+ * @LastEditTime: 2021-10-21 01:14:34
+ * @LastEditors: imu
+ * @Description: ts 的一些定义
+ */
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import type { PropOptions, PropType } from "vue-types/dist/types";
@@ -51,7 +59,9 @@ export const tableProps = {
     type: Object,
     default: () => ({
       noDataShow: false,
-      pageSize: [10, 20, 50]
+      pageSize: 20,
+      showOption: false,
+      pageSizeOption: [10, 20, 50],
     })
   }
 };

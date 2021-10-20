@@ -1,10 +1,66 @@
-table,
+table {
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid #333;
+}
+
 td {
   border: 1px solid #333;
+  text-align: center;
+  padding: 10px;
 }
 
 thead,
 tfoot {
   background-color: #333;
   color: #fff;
+}
+
+th {
+  padding: 8px;
+  cursor: pointer;
+  -moz-user-select: none; /*火狐*/
+  -webkit-user-select: none; /*webkit浏览器*/
+  -ms-user-select: none; /*IE10*/
+  -khtml-user-select: none; /*早期浏览器*/
+  user-select: none;
+}
+
+.card-header {
+  padding: 40px 0px 30px;
+  text-align: center;
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.card-toolbal {
+  margin: 8px 0;
+  overflow: hidden;
+  -moz-user-select: none; /*火狐*/
+  -webkit-user-select: none; /*webkit浏览器*/
+  -ms-user-select: none; /*IE10*/
+  -khtml-user-select: none; /*早期浏览器*/
+  user-select: none;
+}
+.pagination {
+  float: right;
+}
+.pagination li {
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 4px;
+  display: inline-block;
+  min-width: 40px;
+  text-align: center;
+  cursor: pointer;
+  margin-right: 4px;
+}
+
+.page-selected {
+  background: #ccc;
+}
+
+.page-unselect {
+  background: #fff;
 }
