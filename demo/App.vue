@@ -1,24 +1,30 @@
 <template>
   <div>
-    <TestTable :test="test">
+    <TestTable
+      :title="mock.title"
+      :columns="mock.columns"
+      :data="mock.data"
+      :total="mock.total"
+    >
       <span>xxxxxx</span>
     </TestTable>
   </div>
 </template>
 
 <script lang="ts">
-import { TestTable } from '../src/table'
-import { defineComponent, ref } from '@vue/composition-api'
+import { TestTable } from "../src/table";
+import { defineComponent, reactive } from "@vue/composition-api";
+
+import mockdata from "./datamock";
 
 export default defineComponent({
-  name: 'App',
+  name: "App",
   components: {
     TestTable,
   },
   setup() {
-    const test = ref(true)
-
-    return { test }
+    const mock = reactive(mockdata);
+    return { mock };
   },
-})
+});
 </script>
