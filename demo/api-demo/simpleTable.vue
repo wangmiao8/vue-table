@@ -1,21 +1,24 @@
 <!--
  * @Author: imu
- * @Date: 2021-10-23 17:15:50
- * @LastEditTime: 2021-10-24 18:59:39
- * @LastEditors: imu
  * @Description: 
-    分页、宽高、
+
+    简单的数据渲染表格组件，适合不分页一次性呈现全部数据
+    1. 支持自定表头的渲染
+    2. 支持自定义单元格的渲染
+    3. 固定表头宽度
+    4. 带边框
+
 -->
+
 <template>
   <div>
     <TestTable
-      :width="500"
-      :height="400"
       :columns="columns"
       :data="data"
-      :total="data.length"
       :bordered="true"
     >
+      <span slot="name" slot-scope="text">{{ text }}</span>
+      <span slot="customTitle">这是一个自定义的列表头</span>
     </TestTable>
   </div>
 </template>
@@ -25,7 +28,9 @@ const columns = [
   {
     header: "Name",
     dataIndex: "name",
-    width: 100,
+    width: 100, // 固定宽度
+    slots: { title: "customTitle" }, // 自定义表头内容
+    scopedSlots: { customRender: "name" }, // 自定义单元格内容
   },
   {
     header: "Sex",
@@ -49,7 +54,7 @@ while (i < 123) {
   i++;
 }
 
-const total = 123;
+const total = data.length;
 
 export default {
   data() {

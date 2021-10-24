@@ -6,7 +6,7 @@
       :data="mock.data"
       :total="mock.total"
     >
-      <span>xxxxxx</span>
+      <span></span>
     </TestTable>
   </div>
 </template>
