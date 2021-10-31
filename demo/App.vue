@@ -1,3 +1,7 @@
+<!--
+ * @Author: imu
+ * @Description: 
+-->
 <template>
   <div>
     <TestTable
@@ -6,7 +10,7 @@
       :data="mock.data"
       :total="mock.total"
     >
-      <span></span>
+      <span v->fdsjnfkdsn</span>
     </TestTable>
   </div>
 </template>

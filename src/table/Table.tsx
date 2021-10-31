@@ -1,8 +1,8 @@
 /*
  * @Author: imu
  * @Date: 2021-10-21 00:20:26
- * @LastEditTime: 2021-10-21 03:43:36
- * @LastEditors: imu
+ * @LastEditTime: 2021-10-30 17:53:24
+ * @LastEditors: Please set LastEditors
  * @Description: 表格组件
  */
 
@@ -16,6 +16,7 @@ import {
   toRefs,
 } from "@vue/composition-api";
 import { TablePublicProps, tableProps } from "./types";
+import { useColumn } from "./composables/useColumn";
 
 import "./Table.less";
 
@@ -55,6 +56,14 @@ export default defineComponent({
     const sortStatus: Ref = ref(0); // 0 不排序，1 升序，2 降序
     const keys = columnsKeys(props); // 列的 keys
     const pagingArr = getPaging(props); // 底部分页按钮
+
+    console.log(
+      "%cHi Noko Cat ->%c slot",
+      "color:#fb7299",
+      "color:#01affd",
+      slots
+    );
+    useColumn(props);
 
     // 列表排序，暂时只能互斥，还不能取交集
     function sortData(colIndex: number) {
@@ -151,8 +160,9 @@ export default defineComponent({
                         i.header
                       }${showSortArrow(index)}`}</th>
                     ))}
+                    <tr>{slots.default()}</tr>
                   </tr>
-                </thead>
+                </thead>  
               )}
               {data?.length > 0 && (
                 <tbody>
