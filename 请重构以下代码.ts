@@ -1,7 +1,3 @@
-/*
- * @Author: imu
- * @Description:
- */
 // 请使用优化以下代码：
 
 // 假设已经存在以下3个函数，3个函数的功能都是向服务器上传文件，根据不同的上传类型参数都会不一样。内容的实现这里无须关注
@@ -56,12 +52,10 @@ function upload(files: string[]): Promise<boolean> {
 
 // 重构
 
-
-
 const fileMap = new Map();
 fileMap.set("txt", uploadByFtp);
 fileMap.set("exe", formateSftp);
-fileMap.set("doc", uploadByHttp);
+fileMap.set("doc", formateHttp);
 
 function formateSftp(file) {
   return new Promise((resolve, reject) => {
