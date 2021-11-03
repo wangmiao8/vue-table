@@ -1,8 +1,8 @@
 /*
  * @Author: imu
  * @Date: 2021-10-21 00:20:26
- * @LastEditTime: 2021-10-21 01:14:34
- * @LastEditors: imu
+ * @LastEditTime: 2021-11-04 01:13:01
+ * @LastEditors: Please set LastEditors
  * @Description: ts 的一些定义
  */
 
@@ -31,29 +31,30 @@ type InferPropType<T> = T extends null
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type IxPublicPropTypes<O> = O extends object
-  ? { [K in PublicRequiredKeys<O>]: InferPropType<O[K]> } &
-      { [K in PublicOptionalKeys<O>]?: InferPropType<O[K]> }
+  ? { [K in PublicRequiredKeys<O>]: InferPropType<O[K]> } & {
+      [K in PublicOptionalKeys<O>]?: InferPropType<O[K]>;
+    }
   : { [K in string]: any };
 
 // Props 定义在这里
 export const tableProps = {
   test: {
     type: Boolean,
-    default: false
+    default: false,
   },
   title: String,
   columns: {
     type: Array,
-    default: () => []
+    default: () => [],
   },
   data: {
     type: Array,
-    default: () => []
+    default: () => [],
   },
   total: Number,
   showPageToolbar: {
     type: Boolean,
-    default: true
+    default: true,
   },
   pageToolbar: {
     type: Object,
@@ -62,8 +63,8 @@ export const tableProps = {
       pageSize: 20,
       showOption: false,
       pageSizeOption: [10, 20, 50],
-    })
-  }
+    }),
+  },
 };
 
 export interface Col {

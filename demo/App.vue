@@ -6,7 +6,13 @@
       :data="mock.data"
       :total="mock.total"
     >
-      <span></span>
+      <div slot="slotA" style="color: blue">Name</div>
+      <span slot="slotB" style="color: red">Sex</span>
+      <template v-slot:tabelCellA="content">
+        <div @click="handleClick" style="cursor: pointer">
+          单元格自定义渲染：{{ content }}
+        </div>
+      </template>
     </TestTable>
   </div>
 </template>
@@ -24,7 +30,7 @@ export default defineComponent({
   },
   setup() {
     const mock = reactive(mockdata);
-    return { mock };
+    return { mock, handleClick: () => alert("没做东西，别点啦") };
   },
 });
 </script>

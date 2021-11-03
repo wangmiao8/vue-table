@@ -1,8 +1,5 @@
 /*
  * @Author: imu
- * @Date: 2021-10-21 00:20:26
- * @LastEditTime: 2021-10-21 03:38:14
- * @LastEditors: imu
  * @Description: mock
  */
 const data = (() => {
@@ -34,11 +31,18 @@ export default {
       header: "Name",
       dataIndex: "name",
       sortable: true,
+      slots: {
+        title: "slotA",
+      },
     },
     {
       header: "Sex",
       dataIndex: "sex",
       sortable: true,
+      slots: {
+        title: "slotB",
+        tabelCell: "tabelCellA",
+      },
     },
     {
       header: "Age",
