@@ -1,7 +1,3 @@
-/*
- * @Author: imu
- * @Description: mock
- */
 const data = (() => {
   let i = 0;
   const data = [];
@@ -14,13 +10,6 @@ const data = (() => {
     });
     i++;
   }
-  console.log(
-    "%cHi Noko Cat ->%c data",
-    "color:#fb7299",
-    "color:#01affd",
-    data
-  );
-
   return data;
 })();
 

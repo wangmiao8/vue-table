@@ -31,7 +31,6 @@ export default function usePagenation(props: TablePublicProps) {
   // 跳指定页
   function toPage(num: number) {
     currentPage.value = num;
-    console.log();
   }
 
   // 跳后一页

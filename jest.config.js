@@ -1,18 +1,18 @@
 module.exports = {
   // u can change this option to a more specific folder for test single component or util when dev
   // for example, ['<rootDir>/packages/components/button']
-  roots: ['<rootDir>/src/'],
-  setupFiles: ['<rootDir>/jest.setup.js'],
+  roots: ["<rootDir>/src/"],
+  setupFiles: ["<rootDir>/jest.setup.js"],
 
-  testEnvironment: 'jsdom',
+  testEnvironment: "jsdom",
   transform: {
-    '^.+\\.vue$': 'vue-jest',
-    '^.+\\.(t|j)sx?$': [
-      'babel-jest',
+    "^.+\\.vue$": "vue-jest",
+    "^.+\\.(t|j)sx?$": [
+      "babel-jest",
       {
         presets: [
           [
-            '@babel/preset-env',
+            "@babel/preset-env",
             {
               targets: {
                 node: true,
@@ -20,14 +20,14 @@ module.exports = {
             },
           ],
           [
-            '@vue/babel-preset-jsx',
+            "@vue/babel-preset-jsx",
             {
               compositionAPI: true,
               injectH: true,
             },
           ],
 
-          '@babel/preset-typescript',
+          "@babel/preset-typescript",
         ],
         plugins: [
           // 'transform-vue-jsx',
@@ -36,16 +36,17 @@ module.exports = {
       },
     ],
   },
+
   globals: {
     __DEV__: true,
   },
   moduleNameMapper: {
-    '^@tests': '<rootDir>/tests',
-    '^@tests/(.*)$': '<rootDir>/tests/$1',
+    "^@tests": "<rootDir>/tests",
+    "^@tests/(.*)$": "<rootDir>/tests/$1",
   },
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'json'],
+  moduleFileExtensions: ["ts", "tsx", "js", "json"],
   collectCoverage: true,
-  coverageReporters: ['json', 'lcov', 'text', 'cobertura'],
+  coverageReporters: ["json", "lcov", "text", "cobertura"],
   coverageThreshold: {
     global: {
       branches: 85,
@@ -54,6 +55,6 @@ module.exports = {
       statements: 85,
     },
   },
-  coveragePathIgnorePatterns: ['/node_modules/', '<rootDir>/tests'],
-  reporters: ['default', 'jest-junit'],
-}
+  coveragePathIgnorePatterns: ["/node_modules/", "<rootDir>/tests"],
+  reporters: ["default", "jest-junit"],
+};

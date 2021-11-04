@@ -1,7 +1,7 @@
 /*
  * @Author: imu
  * @Date: 2021-10-21 00:20:26
- * @LastEditTime: 2021-11-04 01:13:01
+ * @LastEditTime: 2021-11-04 11:52:26
  * @LastEditors: Please set LastEditors
  * @Description: ts 的一些定义
  */
@@ -38,10 +38,6 @@ export type IxPublicPropTypes<O> = O extends object
 
 // Props 定义在这里
 export const tableProps = {
-  test: {
-    type: Boolean,
-    default: false,
-  },
   title: String,
   columns: {
     type: Array,

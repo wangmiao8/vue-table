@@ -9,7 +9,7 @@ import useColumns from "./composables/useColumns";
 import useSort from "./composables/useSort";
 import usePagenation from "./composables/usePagination";
 
-import "./Table.less";
+// import "./Table.less";
 
 export default defineComponent({
   name: "Table",
@@ -45,7 +45,7 @@ export default defineComponent({
                       onClick={() => (renderData = sortData(index))}
                     >
                       {i?.slots?.title ? (
-                        slots[i.slots.title]()
+                        slots[i.slots.title] && slots[i.slots.title]()
                       ) : (
                         <span>{i.header}</span>
                       )}
@@ -61,7 +61,8 @@ export default defineComponent({
                       {dataKeys.value.map((key: string, index: number) => (
                         <td key={index}>
                           {props.columns[index]?.slots?.tabelCell
-                            ? slots[props.columns[index].slots.tabelCell](
+                            ? slots[props.columns[index].slots.tabelCell] &&
+                              slots[props.columns[index].slots.tabelCell](
                                 item[key]
                               )
                             : item[key]}
@@ -76,14 +77,19 @@ export default defineComponent({
           {props.showPageToolbar && (
             <div class="card-toolbal">
               <ul class="pagination">
-                <li onClick={() => toFirst()}>&lt;&lt;</li>
-                <li onClick={() => toPrev()}>&lt;</li>
+                <li class="toFirst" onClick={() => toFirst()}>
+                  &lt;&lt;
+                </li>
+                <li class="toPrev" onClick={() => toPrev()}>
+                  &lt;
+                </li>
                 {pagingArr.value.map((i: number) => (
                   <li
                     class={
-                      currentPage.value === i - 1
+                      "toPage " +
+                      (currentPage.value === i - 1
                         ? "page-selected"
-                        : "page-unselect"
+                        : "page-unselect")
                     }
                     key={i}
                     onClick={() => toPage(i - 1)}
@@ -91,8 +97,12 @@ export default defineComponent({
                     {i}
                   </li>
                 ))}
-                <li onClick={() => toAfter()}>&gt;</li>
-                <li onClick={() => toLast()}>&gt;&gt;</li>
+                <li class="toAfter" onClick={() => toAfter()}>
+                  &gt;
+                </li>
+                <li class="toLast" onClick={() => toLast()}>
+                  &gt;&gt;
+                </li>
               </ul>
             </div>
           )}
