@@ -9,7 +9,7 @@ import useColumns from "./composables/useColumns";
 import useSort from "./composables/useSort";
 import usePagenation from "./composables/usePagination";
 
-// import "./Table.less";
+import "./Table.less";
 
 export default defineComponent({
   name: "Table",
