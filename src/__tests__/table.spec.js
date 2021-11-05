@@ -50,8 +50,12 @@ describe("Table", () => {
     }).not.toThrow();
   });
 
-  test("props ", () => {
+  test("props", async () => {
     const wrapper = TableMount({
+      slots: {
+        slotA: "<div>title slots</div>",
+        tabelCellA: "<div>tabelCell slots</div>",
+      },
       propsData: {
         title: "Test",
         columns: [
@@ -68,7 +72,6 @@ describe("Table", () => {
             dataIndex: "sex",
             sortable: true,
             slots: {
-              title: "slotB",
               tabelCell: "tabelCellA",
             },
           },
@@ -95,6 +98,10 @@ describe("Table", () => {
     expect(wrapper.find("th").exists()).toBeTruthy();
     expect(wrapper.find("td").exists()).toBeTruthy();
     expect(wrapper.find(".card-toolbal").exists()).toBeTruthy();
+
+    // slots
+    expect(wrapper.find("tr th div").text()).toBe("title slots");
+    expect(wrapper.find("tr td div").text()).toBe("tabelCell slots");
   });
 
   test("noData", () => {
@@ -112,28 +119,40 @@ describe("Table", () => {
     expect(wrapper.find(".pagination").exists()).toBeFalsy();
   });
 
-  test("pagination click", async () => {
+  test("pagination", async () => {
     const wrapper = TableMount({
       propsData: mockdata,
     });
 
-    await wrapper.find(".toFirst").trigger("click");
-    await wrapper.find(".toPrev").trigger("click");
+    expect(wrapper.find("tr td").text()).toBe("People 0");
     await wrapper.find(".toAfter").trigger("click");
-    await wrapper.find(".toPrev").trigger("click");
+    expect(wrapper.find("tr td").text()).toBe("People 20");
     await wrapper.find(".toLast").trigger("click");
+    expect(wrapper.find("tr td").text()).toBe("People 120");
     await wrapper.find(".toAfter").trigger("click");
-    await wrapper.find(".toPage").trigger("click");
+    expect(wrapper.find("tr td").text()).toBe("People 120");
+    await wrapper.find(".toPrev").trigger("click");
+    expect(wrapper.find("tr td").text()).toBe("People 100");
+    await wrapper.find(".toFirst").trigger("click");
+    expect(wrapper.find("tr td").text()).toBe("People 0");
+    await wrapper.find(".toPrev").trigger("click");
+    expect(wrapper.find("tr td").text()).toBe("People 0");
+    await wrapper.findAll(".toPage").at(3).trigger("click");
+    expect(wrapper.find("tr td").text()).toBe("People 60");
   });
 
-  test("sort click", async () => {
+  test("sort", async () => {
     const wrapper = TableMount({
       propsData: mockdata,
     });
 
+    expect(wrapper.find("tr td").text()).toBe("People 0");
     await wrapper.find("th").trigger("click");
+    expect(wrapper.find("tr td").text()).toBe("People 0");
     await wrapper.find("th").trigger("click");
+    expect(wrapper.find("tr td").text()).toBe("People 99");
     await wrapper.find("th").trigger("click");
+    expect(wrapper.find("tr td").text()).toBe("People 0");
   });
 
   test("no data sort click", async () => {
@@ -169,5 +188,6 @@ describe("Table", () => {
     });
 
     await wrapper.find("th").trigger("click");
+    expect(wrapper.find("td").exists()).toBeFalsy();
   });
 });
